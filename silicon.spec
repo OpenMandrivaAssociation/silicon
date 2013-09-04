@@ -13,6 +13,7 @@ BuildRequires:	cmake
 BuildRequires:	qt4-devel
 BuildRequires:	taglib-devel
 BuildRequires:	pkgconfig(libmpg123)
+BuildRequires:	mpg123
 BuildRequires:	pkgconfig(phonon)
 
 Requires:	cdrkit
