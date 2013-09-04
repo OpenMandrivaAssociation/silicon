@@ -13,6 +13,7 @@ BuildRequires:	cmake
 BuildRequires:	qt4-devel
 BuildRequires:	taglib-devel
 BuildRequires:	pkgconfig(libmpg123)
+BuildRequires:	pkgconfig(phonon)
 
 Requires:	cdrkit
 Requires:	cdrkit-genisoimage
@@ -33,7 +34,6 @@ your optical discs like CDs, DVDs and Blu-Rays.
 %make
 
 %install
-rm -fr %{buildroot}
 %makeinstall_std -C build
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
