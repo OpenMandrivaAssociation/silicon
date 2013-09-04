@@ -1,6 +1,6 @@
 Name:		silicon
 Version:	1.8.1
-Release:	%mkrel 2
+Release:	1
 Group:		Archiving/Cd burning
 License:	GPLv3
 Url:		http://getsilicon.org
@@ -15,6 +15,9 @@ BuildRequires:	taglib-devel
 BuildRequires:	pkgconfig(libmpg123)
 BuildRequires:	mpg123
 BuildRequires:	pkgconfig(phonon)
+BuildRequires:	cdrkit
+BuildRequires:	polkit
+BuildRequires:	dvd+rw-tools
 
 Requires:	cdrkit
 Requires:	cdrkit-genisoimage
@@ -353,3 +356,48 @@ Requires:	%{name} = %{version}-%{release}
 
 %files		plugin-mpg123-audio-disc
 %{_libdir}/%{name}/plugins/libmpg123.so
+
+#-----------------------------------------------------
+
+%package	plugin-audio-cd-record
+Summary:	CD record plugin
+Group:		Archiving/Cd burning
+Requires:	%{name} = %{version}-%{release}
+
+%description	plugin-audio-cd-record
+%{summary}
+
+%files		plugin-audio-cd-record
+%{_libdir}/%{name}/plugins/libAudioCdRecord.so
+%{_libdir}/%{name}/plugins/libCdRecord.so
+%{_libdir}/%{name}/plugins/libReadCd.so
+
+
+#-----------------------------------------------------
+
+%package	plugin-polkit-mount-root
+Summary:	Polkit mount plugin
+Group:		Archiving/Cd burning
+Requires:	%{name} = %{version}-%{release}
+
+%description	plugin-polkit-mount-root
+%{summary}
+
+%files		plugin-polkit-mount-root
+%{_bindir}/%{name}_rootmount
+%{_libdir}/%{name}/plugins/libRootMount.so
+
+#-----------------------------------------------------
+
+%package	plugin-cd-dvd-eraser
+Summary:	CD and DVD eraser plugin
+Group:		Archiving/Cd burning
+Requires:	%{name} = %{version}-%{release}
+
+%description	plugin-cd-dvd-eraser
+%{summary}
+
+%files		plugin-cd-dvd-eraser
+%{_libdir}/%{name}/plugins/libMkIsoFs.so
+%{_libdir}/%{name}/plugins/libMkDiscFs.so
+%{_libdir}/%{name}/plugins/libEraser.so
