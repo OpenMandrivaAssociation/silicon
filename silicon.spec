@@ -1,6 +1,6 @@
 Name:		silicon
 Version:	1.8.1
-Release:	6
+Release:	7
 Group:		Archiving/Cd burning
 License:	GPLv3
 Url:		http://getsilicon.org
