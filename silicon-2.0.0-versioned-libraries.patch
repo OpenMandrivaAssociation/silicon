@@ -1,0 +1,78 @@
+diff -urN silicon-empire/src/Libs/SDataBase/CMakeLists.txt silicon-empire-patched/src/Libs/SDataBase/CMakeLists.txt
+--- silicon-empire/src/Libs/SDataBase/CMakeLists.txt	2013-06-24 20:30:46.000000000 +1100
++++ silicon-empire-patched/src/Libs/SDataBase/CMakeLists.txt	2014-10-07 20:28:57.859099583 +1100
+@@ -1,6 +1,11 @@
+ project(SDataBase)
+ cmake_minimum_required(VERSION 2.6)
+ 
++set(SILICON_VERSION_MAJOR 2)
++set(SILICON_VERSION_MINOR 0)
++set(SILICON_VERSION_PATCH 0)
++set(SILICON_VERSION "${SILICON_VERSION_MAJOR}.${SILICON_VERSION_MINOR}.${SILICON_VERSION_PATCH}")
++
+ include_directories( ${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} )
+ 
+ SET( SDATABASE_CPP ${SDATABASE_CPP}
+@@ -42,6 +47,10 @@
+ QT4_WRAP_UI( SDATABASE_UI_HEADERS ${SDATABASE_UIS} )
+ 
+ add_library( SDataBase SHARED ${SDATABASE_CPP} ${SDATABASE_UI_HEADERS} ${SDATABASE_RESOURCES_HEADERS} ${SDATABASE_MOC_HEADERS} )
++set_target_properties(SDataBase PROPERTIES
++    VERSION ${SILICON_VERSION}
++    SOVERSION ${SILICON_VERSION_MAJOR}
++)
+ target_link_libraries(SDataBase ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTTEST_LIBRARY} )
+ 
+ install(TARGETS SDataBase LIBRARY DESTINATION ${LIB_INSTALL_DIR} )
+diff -urN silicon-empire/src/Libs/SiDi/CMakeLists.txt silicon-empire-patched/src/Libs/SiDi/CMakeLists.txt
+--- silicon-empire/src/Libs/SiDi/CMakeLists.txt	2013-06-24 20:30:46.000000000 +1100
++++ silicon-empire-patched/src/Libs/SiDi/CMakeLists.txt	2014-10-07 20:29:50.969102000 +1100
+@@ -1,6 +1,11 @@
+ project(SiDi)
+ cmake_minimum_required(VERSION 2.6)
+ 
++set(SILICON_VERSION_MAJOR 2)
++set(SILICON_VERSION_MINOR 0)
++set(SILICON_VERSION_PATCH 0)
++set(SILICON_VERSION "${SILICON_VERSION_MAJOR}.${SILICON_VERSION_MINOR}.${SILICON_VERSION_PATCH}")
++
+ include_directories( ${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} )
+ include_directories ("${PROJECT_SOURCE_DIR}/../SDataBase")
+ include_directories ("${PROJECT_SOURCE_DIR}/../SiliconLib")
+@@ -68,6 +73,10 @@
+ QT4_WRAP_UI( SIDI_UI_HEADERS ${SIDI_UIS} )
+ 
+ add_library( SiDi SHARED ${SIDI_CPP} ${SIDI_UI_HEADERS} ${SIDI_RESOURCES_HEADERS} ${SIDI_MOC_HEADERS} )
++set_target_properties(SiDi PROPERTIES
++    VERSION ${SILICON_VERSION}
++    SOVERSION ${SILICON_VERSION_MAJOR}
++)
+ target_link_libraries( SiDi ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTTEST_LIBRARY} SDataBase SiliconLib tag  )
+ 
+ install(TARGETS SiDi LIBRARY DESTINATION ${LIB_INSTALL_DIR} )
+diff -urN silicon-empire/src/Libs/SiliconLib/CMakeLists.txt silicon-empire-patched/src/Libs/SiliconLib/CMakeLists.txt
+--- silicon-empire/src/Libs/SiliconLib/CMakeLists.txt	2013-06-24 20:30:46.000000000 +1100
++++ silicon-empire-patched/src/Libs/SiliconLib/CMakeLists.txt	2014-10-07 20:30:28.779103721 +1100
+@@ -1,6 +1,11 @@
+ project(SiliconLib)
+ cmake_minimum_required(VERSION 2.6)
+ 
++set(SILICON_VERSION_MAJOR 2)
++set(SILICON_VERSION_MINOR 0)
++set(SILICON_VERSION_PATCH 0)
++set(SILICON_VERSION "${SILICON_VERSION_MAJOR}.${SILICON_VERSION_MINOR}.${SILICON_VERSION_PATCH}")
++
+ include_directories( ${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${PHONON_INCLUDES} )
+ include_directories ("${PROJECT_SOURCE_DIR}/../SDataBase")
+ 
+@@ -135,6 +140,10 @@
+ QT4_WRAP_UI( SILICONLIB_UI_HEADERS ${SILICONLIB_UIS} )
+ 
+ add_library( SiliconLib SHARED ${SILICONLIB_CPP} ${SILICONLIB_UI_HEADERS} ${SILICONLIB_RESOURCES_HEADERS} ${SILICONLIB_MOC_HEADERS} )
++set_target_properties(SiliconLib PROPERTIES
++    VERSION ${SILICON_VERSION}
++    SOVERSION ${SILICON_VERSION_MAJOR}
++)
+ target_link_libraries(SiliconLib ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${PHONON_LIBS} SDataBase )
+ 
+ install(TARGETS SiliconLib LIBRARY DESTINATION ${LIB_INSTALL_DIR} )
