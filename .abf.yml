@@ -1,3 +1,4 @@
 sources:
    silicon_2.0.0_source.tar.gz: 1ea7d0c52a56771f3e80e12c168cacd5e41c63b6
-   Silicon-lang-ru.ts.tar.gz: 51389a3ca79b1652ec86dc6eb3272e1fd4b55da8
+   Silicon-lang-ru.ts.tar.gz: d2432aa4f11c7ec995544fd17162b5942935efc1
+   CMakeLists.txt.tar.gz: 68af7bcdbd11c322d07a42cb2407fd6ed1d7a467
