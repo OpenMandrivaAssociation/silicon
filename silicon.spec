@@ -6,7 +6,7 @@
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	5
+Release:	6
 License:	GPLv3+
 Group:		Archiving/Cd burning
 Url:		http://getsilicon.org
@@ -16,8 +16,10 @@ Source2:        CMakeLists.txt.tar.gz
 Patch0:		silicon-1.8.1-splugin-lyricbrowser.patch
 Patch1:		silicon-1.8.1-qtlocalpeer.patch
 Patch2:		silicon-2.0.0-versioned-libraries.patch
-BuildRequires:	cmake
-BuildRequires:	qt4-devel
+Patch3:		0001-Move-to-sialan-labs-and-Ported-to-Qt5-completed.patch
+Patch4:		0002-Debian-build-system-and-improvment-on-build-system.patch
+BuildRequires:	qmake5
+BuildRequires:	qt5-devel
 BuildRequires:	pkgconfig(phonon)
 BuildRequires:	pkgconfig(taglib)
 # Extra BR needed for plugins check
@@ -31,7 +33,7 @@ BuildRequires:	udisks
 Requires:	cdrkit
 Requires:	cdrkit-genisoimage
 Requires:	dvd+rw-tools
-Requires:	qt4-database-plugin-mysql
+Requires:	qt5-qtbase-database-plugin-mysql
 Suggests:	%{name}-audio-disc
 Suggests:	%{name}-converter
 Suggests:	%{name}-copy-disc
@@ -80,7 +82,7 @@ your optical discs like CDs, DVDs and Blu-Rays.
 %package -n %{libsdatabase}
 Summary:	Silicon shared library
 Group:		System/Libraries
-Requires:	qt4-database-plugin-sqlite
+Requires:	qt5-qtbase-database-plugin-sqlite
 
 %description -n %{libsdatabase}
 Silicon shared library.
@@ -567,7 +569,7 @@ popd
 
 %build
 cd src
-%cmake_qt4
+%cmake_qt5
 %make
 
 %install
