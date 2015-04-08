@@ -18,6 +18,7 @@ Patch1:		silicon-1.8.1-qtlocalpeer.patch
 Patch2:		silicon-2.0.0-versioned-libraries.patch
 Patch3:		0001-Move-to-sialan-labs-and-Ported-to-Qt5-completed.patch
 Patch4:		0002-Debian-build-system-and-improvment-on-build-system.patch
+BuildRequires:	cmake
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
 BuildRequires:	pkgconfig(phonon)
