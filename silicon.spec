@@ -556,9 +556,7 @@ Detect Devices using UDisks.
 
 %prep
 %setup -qn %{name}-empire
-%patch0 -p1 -b .lbnetwork~
-%patch1 -p1 -b .unistd~
-%patch2 -p1 -b .sonames~
+%apply_patches
 
 pushd src/Silicon/locale
 tar -xvzf %{SOURCE1}
