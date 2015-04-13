@@ -2,15 +2,17 @@
 %define libsdatabase %mklibname SDataBase %{major}
 %define libsidi %mklibname SiDi %{major}
 %define libsiliconlib %mklibname SiliconLib %{major}
+%define snap 20150413
 
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	6
+Release:	7.%{snap}.1
 License:	GPLv3+
 Group:		Archiving/Cd burning
-Url:		http://getsilicon.org
-Source0:	http://getsilicon.org/download/%{name}_%{version}_source.tar.gz
+Url:		https://github.com/realbardia/silicon
+# git archive --format=tar --prefix=silicon-2.0.0-$(date +%Y%m%d)/ HEAD | xz -vf > silicon-2.0.0-$(date +%Y%m%d).tar.xz
+Source0:	%{name}-%{version}-%{snap}.tar.xz
 Source1:        Silicon-lang-ru.ts.tar.gz
 Source2:        CMakeLists.txt.tar.gz
 Patch0:		silicon-1.8.1-splugin-lyricbrowser.patch
@@ -555,8 +557,8 @@ Detect Devices using UDisks.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{name}-empire
-%apply_patches
+%setup -qn %{name}-%{version}-%{snap}
+#apply_patches
 
 pushd src/Silicon/locale
 tar -xvzf %{SOURCE1}
