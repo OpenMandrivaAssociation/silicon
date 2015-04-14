@@ -558,9 +558,9 @@ Detect Devices using UDisks.
 %setup -qn %{name}-%{version}-%{snap}
 #apply_patches
 
-pushd src/Silicon/locale
-tar -xvzf %{SOURCE1}
-popd
+#pushd src/Silicon/locale
+#tar -xvzf %{SOURCE1}
+#popd
 
 pushd src/Silicon
 tar -xvzf %{SOURCE2}
