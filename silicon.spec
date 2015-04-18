@@ -558,21 +558,19 @@ Detect Devices using UDisks.
 %setup -qn %{name}-%{version}-%{snap}
 #apply_patches
 
-pushd src/Silicon/locale
-tar -xvzf %{SOURCE1}
-popd
+#pushd src/Silicon/locale
+#tar -xvzf %{SOURCE1}
+#popd
 
-pushd src/Silicon
-tar -xvzf %{SOURCE2}
-popd
+#pushd src/Silicon
+#tar -xvzf %{SOURCE2}
+#popd
 
 %build
-cd src
-%cmake_qt5
+%qmake_qt5
 %make
 
 %install
-cd src
 %makeinstall_std -C build
 
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libSingleInnerDialogQML.so
