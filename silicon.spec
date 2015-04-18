@@ -568,7 +568,7 @@ Detect Devices using UDisks.
 
 %build
 %qmake_qt5
-%make
+%make -j1
 
 %install
 %makeinstall_std -C build
