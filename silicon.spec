@@ -1,7 +1,7 @@
-%define major 2
-%define libsdatabase %mklibname SDataBase %{major}
-%define libsidi %mklibname SiDi %{major}
-%define libsiliconlib %mklibname SiliconLib %{major}
+%define major 0
+%define libsdatabase %mklibname sdatabase %{major}
+%define libsidi %mklibname sidi %{major}
+%define libsilicon %mklibname silicon %{major}
 %define snap 20150413
 
 Summary:	Disc burning and managing application
@@ -15,9 +15,8 @@ Url:		https://github.com/realbardia/silicon
 Source0:	%{name}-%{version}-%{snap}.tar.xz
 Source1:        Silicon-lang-ru.ts.tar.gz
 Source2:        CMakeLists.txt.tar.gz
-Patch0:		silicon-1.8.1-splugin-lyricbrowser.patch
-Patch1:		silicon-1.8.1-qtlocalpeer.patch
-Patch2:		silicon-2.0.0-versioned-libraries.patch
+Source100:	silicon.rpmlintrc
+Patch1:		silicon-2.0.0-qtlocalpeer.patch
 BuildRequires:	cmake
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
@@ -46,22 +45,20 @@ Suggests:	%{name}-disc-imaging
 Suggests:	%{name}-disc-scanner
 Suggests:	%{name}-image-burner
 Suggests:	%{name}-library
-Suggests:	%{name}-limoo
 Suggests:	%{name}-mounter
 Suggests:	%{name}-sample-app
 Suggests:	%{name}-script-runner
-Suggests:	%{name}-tagarg-player
 Suggests:	%{name}-themes
 Suggests:	%{name}-plugin-audio-cd-record
 Suggests:	%{name}-plugin-cd-record
 Suggests:	%{name}-plugin-eraser
 Suggests:	%{name}-plugin-fuseiso
-Suggests:	%{name}-plugin-lyric-browser
 Suggests:	%{name}-plugin-mkdiscfs
 Suggests:	%{name}-plugin-mkisofs
 Suggests:	%{name}-plugin-mpg123
-Suggests:	%{name}-plugin-now-playing
+Suggests:	%{name}-plugin-mpg321
 Suggests:	%{name}-plugin-read-cd
+Suggests:	%{name}-plugin-rootmount
 Suggests:	%{name}-plugin-single-inner-dialog
 Suggests:	%{name}-plugin-system-tray
 Suggests:	%{name}-plugin-tagarg-audio-disc
@@ -72,8 +69,9 @@ Silicon Empire is set of tools to Burn, Copy, Backup and Manage
 your optical discs like CDs, DVDs and Blu-Rays.
 
 %files
-%doc README Authors
+%doc README
 %{_bindir}/%{name}
+%{_bindir}/%{name}_rootmount
 %{_datadir}/applications/silicon.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/%{name}/languages/*
@@ -89,7 +87,7 @@ Requires:	qt5-qtbase-database-plugin-sqlite
 Silicon shared library.
 
 %files -n %{libsdatabase}
-%{_libdir}/libSDataBase.so.%{major}*
+%{_libdir}/libsdatabase.so.%{major}*
 
 #----------------------------------------------------------------------------
 
@@ -101,19 +99,19 @@ Group:		System/Libraries
 Silicon shared library.
 
 %files -n %{libsidi}
-%{_libdir}/libSiDi.so.%{major}*
+%{_libdir}/libsidi.so.%{major}*
 
 #----------------------------------------------------------------------------
 
-%package -n %{libsiliconlib}
+%package -n %{libsilicon}
 Summary:	Silicon shared library
 Group:		System/Libraries
 
-%description -n %{libsiliconlib}
+%description -n %{libsilicon}
 Silicon shared library.
 
-%files -n %{libsiliconlib}
-%{_libdir}/libSiliconLib.so.%{major}*
+%files -n %{libsilicon}
+%{_libdir}/libsilicon.so.%{major}*
 
 #----------------------------------------------------------------------------
 
@@ -129,7 +127,7 @@ Silicon application to create Audio discs:
 * Blu-Rays
 
 %files audio-disc
-%{_libdir}/%{name}/apps/libAudioDisc.so
+%{_libdir}/%{name}/apps/libaudiodisc.so*
 
 #----------------------------------------------------------------------------
 
@@ -142,7 +140,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to convert your files to other supported formats.
 
 %files converter
-%{_libdir}/%{name}/apps/libConverter.so
+%{_libdir}/%{name}/apps/libConverter.so*
 
 #----------------------------------------------------------------------------
 
@@ -155,7 +153,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to copy a disc to another disc.
 
 %files copy-disc
-%{_libdir}/%{name}/apps/libCopyDisc.so
+%{_libdir}/%{name}/apps/libCopyDisc.so*
 
 #----------------------------------------------------------------------------
 
@@ -169,7 +167,7 @@ Silicon application to show informations and indexed data that DiscScanner
 stored into the Silicon DataBase.
 
 %files database
-%{_libdir}/%{name}/apps/libDataBase.so
+%{_libdir}/%{name}/apps/libDataBase.so*
 
 #----------------------------------------------------------------------------
 
@@ -182,7 +180,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to burn data discs or to create data images.
 
 %files data-disc
-%{_libdir}/%{name}/apps/libDataDisc.so
+%{_libdir}/%{name}/apps/libdatadisc.so*
 
 #----------------------------------------------------------------------------
 
@@ -195,7 +193,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to show disc, image or database disc details.
 
 %files disc-details
-%{_libdir}/%{name}/apps/libDiscDetails.so
+%{_libdir}/%{name}/apps/libDiscDetails.so*
 
 #----------------------------------------------------------------------------
 
@@ -208,7 +206,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to erase rw discs.
 
 %files disc-eraser
-%{_libdir}/%{name}/apps/libDiscEraser.so
+%{_libdir}/%{name}/apps/libDiscEraser.so*
 
 #----------------------------------------------------------------------------
 
@@ -221,7 +219,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to create images of your discs.
 
 %files disc-imaging
-%{_libdir}/%{name}/apps/libDiscImaging.so
+%{_libdir}/%{name}/apps/libDiscImaging.so*
 
 #----------------------------------------------------------------------------
 
@@ -235,7 +233,7 @@ Silicon application to collect data from your discs to the
 Silicon DataBase.
 
 %files disc-scanner
-%{_libdir}/%{name}/apps/libDiscScanner.so
+%{_libdir}/%{name}/apps/libDiscScanner.so*
 
 #----------------------------------------------------------------------------
 
@@ -248,7 +246,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to burn a images to discs.
 
 %files image-burner
-%{_libdir}/%{name}/apps/libImageBurner.so
+%{_libdir}/%{name}/apps/libImageBurner.so*
 
 #----------------------------------------------------------------------------
 
@@ -261,20 +259,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to manage your iso images in a classic way.
 
 %files library
-%{_libdir}/%{name}/apps/libLibrary.so
-
-#----------------------------------------------------------------------------
-
-%package limoo
-Summary:	Silicon Limoo
-Group:		Archiving/Cd burning
-Requires:	%{name} = %{EVRD}
-
-%description limoo
-Silicon application - Limoo image viewer.
-
-%files limoo
-%{_libdir}/%{name}/apps/libLimoo.so
+%{_libdir}/%{name}/apps/libLibrary.so*
 
 #----------------------------------------------------------------------------
 
@@ -287,7 +272,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to mount/umount images easily.
 
 %files mounter
-%{_libdir}/%{name}/apps/libMounter.so
+%{_libdir}/%{name}/apps/libMounter.so*
 
 #----------------------------------------------------------------------------
 
@@ -300,7 +285,7 @@ Requires:	%{name} = %{EVRD}
 Silicon sample application.
 
 %files sample-app
-%{_libdir}/%{name}/apps/libSampleApp.so
+%{_libdir}/%{name}/apps/libsampleApp.so*
 
 #----------------------------------------------------------------------------
 
@@ -313,20 +298,7 @@ Requires:	%{name} = %{EVRD}
 Silicon application to run scripts.
 
 %files script-runner
-%{_libdir}/%{name}/apps/libScriptRunner.so
-
-#----------------------------------------------------------------------------
-
-%package tagarg-player
-Summary:	Silicon app tagarg player
-Group:		Archiving/Cd burning
-Requires:	%{name} = %{EVRD}
-
-%description tagarg-player
-Silicon music player.
-
-%files tagarg-player
-%{_libdir}/%{name}/apps/libTagargPlayer.so
+%{_libdir}/%{name}/apps/libScriptRunner.so*
 
 #----------------------------------------------------------------------------
 
@@ -355,7 +327,7 @@ Silicon Audio CD record plugin.
 Burn Audio-Discs using AudioCdRecord/Wodim.
 
 %files plugin-audio-cd-record
-%{_libdir}/%{name}/plugins/libAudioCdRecord.so
+%{_libdir}/%{name}/plugins/libAudioCdRecord.so*
 
 #----------------------------------------------------------------------------
 
@@ -370,7 +342,7 @@ Silicon CD record plugin.
 Copy Disc to Disc or Burn Images to Discsr using CdRecord/Wodim.
 
 %files plugin-cd-record
-%{_libdir}/%{name}/plugins/libCdRecord.so
+%{_libdir}/%{name}/plugins/libCdRecord.so*
 
 #----------------------------------------------------------------------------
 
@@ -385,7 +357,7 @@ Silicon eraser plugin.
 Erase Optical discs using dvd+rw-tools and cdrecord.
 
 %files plugin-eraser
-%{_libdir}/%{name}/plugins/libEraser.so
+%{_libdir}/%{name}/plugins/libEraser.so*
 
 #----------------------------------------------------------------------------
 
@@ -402,21 +374,7 @@ Silicon fuseiso plugin.
 Mount Disc images using FUseIso.
 
 %files plugin-fuseiso
-%{_libdir}/%{name}/plugins/libFUseIso.so
-
-#----------------------------------------------------------------------------
-
-%package plugin-lyric-browser
-Summary:	Silicon lyric browser plugin
-Group:		Archiving/Cd burning
-Requires:	%{name} = %{EVRD}
-Requires:	%{name}-tagarg-player = %{EVRD}
-
-%description plugin-lyric-browser
-Silicon lyric browser plugin.
-
-%files plugin-lyric-browser
-%{_libdir}/%{name}/plugins/libLyricBrowser.so
+%{_libdir}/%{name}/plugins/libFUseIso.so*
 
 #----------------------------------------------------------------------------
 
@@ -431,7 +389,7 @@ Silicon MkDiscFs plugin.
 Burn Data Discs using MkIsoFs and CdRecord.
 
 %files plugin-mkdiscfs
-%{_libdir}/%{name}/plugins/libMkDiscFs.so
+%{_libdir}/%{name}/plugins/libMkDiscFs.so*
 
 #----------------------------------------------------------------------------
 
@@ -446,7 +404,7 @@ Silicon MkIsoFs plugin.
 Create Iso Images using MkIsoFs.
 
 %files plugin-mkisofs
-%{_libdir}/%{name}/plugins/libMkIsoFs.so
+%{_libdir}/%{name}/plugins/libMkIsoFs.so*
 
 #----------------------------------------------------------------------------
 
@@ -462,21 +420,24 @@ Silicon mpg123 plugin.
 It's used to convert mpeg formats.
 
 %files plugin-mpg123
-%{_libdir}/%{name}/plugins/libmpg123.so
+%{_libdir}/%{name}/plugins/libmpg123.so*
 
 #----------------------------------------------------------------------------
 
-%package plugin-now-playing
-Summary:	Silicon now playing plugin
-Group:		Archiving/Cd burning
-Requires:	%{name} = %{EVRD}
-Requires:	%{name}-tagarg-player = %{EVRD}
+%package plugin-mpg321
+Summary:        Silicon mpg321 plugin
+Group:          Archiving/Cd burning
+Requires:       %{name} = %{EVRD}
+Requires:       mpg321
 
-%description plugin-now-playing
-Silicon now playing plugin.
+%description plugin-mpg321
+Silicon mpg321 plugin.
 
-%files plugin-now-playing
-%{_libdir}/%{name}/plugins/libNowPlaying.so
+It's used to convert mpeg formats.
+
+%files plugin-mpg321
+%{_libdir}/%{name}/plugins/libmpg321.so*
+
 
 #----------------------------------------------------------------------------
 
@@ -491,7 +452,20 @@ Silicon read CD plugin.
 Read Discs using ReadCd/Readom.
 
 %files plugin-read-cd
-%{_libdir}/%{name}/plugins/libReadCd.so
+%{_libdir}/%{name}/plugins/libReadCd.so*
+
+#----------------------------------------------------------------------------
+
+%package plugin-rootmount
+Summary:        Silicon root mount plugin
+Group:          Archiving/Cd burning
+Requires:       %{name} = %{EVRD}
+
+%description plugin-rootmount
+Silicon root mount plugin.
+
+%files plugin-rootmount
+%{_libdir}/%{name}/plugins/libRootMount.so*
 
 #----------------------------------------------------------------------------
 
@@ -506,7 +480,7 @@ Silicon single inner dialog plugin.
 Show Dialogs in Single and Animation Window.
 
 %files plugin-single-inner-dialog
-%{_libdir}/%{name}/plugins/libSingleInnerDialog.so
+%{_libdir}/%{name}/plugins/libSingleInnerDialog.so*
 
 #----------------------------------------------------------------------------
 
@@ -519,22 +493,7 @@ Requires:	%{name} = %{EVRD}
 Silicon system tray plugin.
 
 %files plugin-system-tray
-%{_libdir}/%{name}/plugins/libSystemTray.so
-
-#----------------------------------------------------------------------------
-
-%package plugin-tagarg-audio-disc
-Summary:	Silicon tagarg audio disc plugin
-Group:		Archiving/Cd burning
-Requires:	%{name} = %{EVRD}
-
-%description plugin-tagarg-audio-disc
-Silicon tagarg audio disc plugin.
-
-Add an audio-disc widget to player.
-
-%files plugin-tagarg-audio-disc
-%{_libdir}/%{name}/plugins/libTagargAudioDisc.so
+%{_libdir}/%{name}/plugins/libSystemTray.so*
 
 #----------------------------------------------------------------------------
 
@@ -550,13 +509,13 @@ Silicon UDisks plugin.
 Detect Devices using UDisks.
 
 %files plugin-udisks
-%{_libdir}/%{name}/plugins/libUDisks.so
+%{_libdir}/%{name}/plugins/libUDisksDeviceNotifier.so*
 
 #----------------------------------------------------------------------------
 
 %prep
 %setup -qn %{name}-%{version}-%{snap}
-#apply_patches
+%apply_patches
 
 #pushd src/Silicon/locale
 #tar -xvzf %{SOURCE1}
@@ -571,9 +530,23 @@ Detect Devices using UDisks.
 %make -j1
 
 %install
-%makeinstall_std -C build
+rm -Rf %{buildroot}/*
+mkdir -p %{buildroot}/usr
+
+mkdir -p %{buildroot}/%{_libdir}
+
+cp -Rp ../build/lib/* %{buildroot}/%{_libdir}
+cp -Rp ../build/bin %{buildroot}/%{_prefix}
+cp -Rp ../build/share %{buildroot}/%{_prefix}
+
+mkdir -p %{buildroot}/%{_datadir}/pixmaps/
+mv %{buildroot}/usr/share/silicon/icons/silicon.png %{buildroot}/%{_datadir}/pixmaps/
+
+mkdir -p %{buildroot}/%{_datadir}/applications
+cp Silicon/files/Silicon.desktop %{buildroot}/%{_datadir}/applications/silicon.desktop
 
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libSingleInnerDialogQML.so
-rm -f %{buildroot}%{_libdir}/libSDataBase.so
-rm -f %{buildroot}%{_libdir}/libSiDi.so
-rm -f %{buildroot}%{_libdir}/libSiliconLib.so
+rm -f %{buildroot}%{_libdir}/%{name}/plugins/libHal*
+rm -f %{buildroot}%{_libdir}/libsdatabase.so
+rm -f %{buildroot}%{_libdir}/libsidi.so
+rm -f %{buildroot}%{_libdir}/libsilicon.so
