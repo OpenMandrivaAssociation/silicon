@@ -20,6 +20,7 @@ Patch1:		silicon-2.0.0-qtlocalpeer.patch
 BuildRequires:	cmake
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
+BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(phonon)
 BuildRequires:	pkgconfig(taglib)
 # Extra BR needed for plugins check
