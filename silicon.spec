@@ -20,6 +20,8 @@ Patch1:		silicon-2.0.0-qtlocalpeer.patch
 BuildRequires:	cmake
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
+BuildRequires:  qt5-linguist
+BuildRequires:  qt5-linguist-tools
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(phonon)
 BuildRequires:	pkgconfig(taglib)
