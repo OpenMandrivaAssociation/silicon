@@ -1,0 +1,10 @@
+--- ./Silicon/qtsingleapplication/qtlocalpeer.cpp.orig	2015-12-26 21:25:29.913550317 +0000
++++ ./Silicon/qtsingleapplication/qtlocalpeer.cpp	2015-12-26 21:25:44.181551387 +0000
+@@ -48,6 +48,7 @@
+ #include "qtlocalpeer.h"
+ #include <QtCore/QCoreApplication>
+ #include <QtCore/QTime>
++#include <QtCore/QDataStream>
+ 
+ #if defined(Q_OS_WIN)
+ #include <QtCore/QLibrary>
