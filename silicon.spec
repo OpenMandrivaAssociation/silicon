@@ -57,7 +57,6 @@ Suggests:	%{name}-plugin-fuseiso
 Suggests:	%{name}-plugin-mkdiscfs
 Suggests:	%{name}-plugin-mkisofs
 Suggests:	%{name}-plugin-mpg123
-Suggests:	%{name}-plugin-mpg321
 Suggests:	%{name}-plugin-read-cd
 Suggests:	%{name}-plugin-rootmount
 Suggests:	%{name}-plugin-single-inner-dialog
@@ -425,23 +424,6 @@ It's used to convert mpeg formats.
 
 #----------------------------------------------------------------------------
 
-%package plugin-mpg321
-Summary:        Silicon mpg321 plugin
-Group:          Archiving/Cd burning
-Requires:       %{name} = %{EVRD}
-Requires:       mpg321
-
-%description plugin-mpg321
-Silicon mpg321 plugin.
-
-It's used to convert mpeg formats.
-
-%files plugin-mpg321
-%{_libdir}/%{name}/plugins/libmpg321.so*
-
-
-#----------------------------------------------------------------------------
-
 %package plugin-read-cd
 Summary:	Silicon read CD plugin
 Group:		Archiving/Cd burning
@@ -548,6 +530,9 @@ cp Silicon/files/Silicon.desktop %{buildroot}/%{_datadir}/applications/silicon.d
 
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libSingleInnerDialogQML.so
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libHal*
+#321 in contrib and not maintained
+rm -f %{buildroot}%{_libdir}/%{name}/plugins/libmpg321*
+
 rm -f %{buildroot}%{_libdir}/libsdatabase.so
 rm -f %{buildroot}%{_libdir}/libsidi.so
 rm -f %{buildroot}%{_libdir}/libsilicon.so
