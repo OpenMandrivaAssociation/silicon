@@ -7,7 +7,7 @@
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	7.%{snap}.1
+Release:	7.%{snap}.2
 License:	GPLv3+
 Group:		Archiving/Cd burning
 Url:		https://github.com/realbardia/silicon
@@ -65,6 +65,11 @@ Suggests:	%{name}-plugin-single-inner-dialog
 Suggests:	%{name}-plugin-system-tray
 Suggests:	%{name}-plugin-tagarg-audio-disc
 Requires:	%{name}-plugin-udisks
+Obsoletes:	silicon-limoo < %{EVRD}
+Obsoletes:	silicon-tagarg-player < %{EVRD}
+Obsoletes:	silicon-plugin-lyric-browser < %{EVRD}
+Obsoletes:	silicon-plugin-now-playing < %{EVRD}
+Obsoletes:	silicon-plugin-tagarg-audio-disc < %{EVRD}
 
 %description
 Silicon Empire is set of tools to Burn, Copy, Backup and Manage
