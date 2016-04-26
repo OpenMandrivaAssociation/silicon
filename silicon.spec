@@ -7,7 +7,7 @@
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	7.%{snap}.2
+Release:	7.%{snap}.3
 License:	GPLv3+
 Group:		Archiving/Cd burning
 Url:		https://github.com/realbardia/silicon
@@ -32,7 +32,6 @@ BuildRequires:	dvd+rw-tools
 BuildRequires:	fuse
 BuildRequires:	fuseiso
 BuildRequires:	mpg123
-#BuildRequires:	udisks
 Requires:	cdrkit
 Requires:	cdrkit-genisoimage
 Requires:	dvd+rw-tools
@@ -491,7 +490,7 @@ Silicon system tray plugin.
 Summary:	Silicon UDisks plugin
 Group:		Archiving/Cd burning
 Requires:	%{name} = %{EVRD}
-Requires:	udisks
+Requires:	udisks2
 
 %description plugin-udisks
 Silicon UDisks plugin.
@@ -537,6 +536,7 @@ cp Silicon/files/Silicon.desktop %{buildroot}/%{_datadir}/applications/silicon.d
 
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libSingleInnerDialogQML.so
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libHal*
+
 #321 in contrib and not maintained
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/libmpg321*
 
