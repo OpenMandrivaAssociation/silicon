@@ -32,7 +32,7 @@ BuildRequires:	dvd+rw-tools
 BuildRequires:	fuse
 BuildRequires:	fuseiso
 BuildRequires:	mpg123
-BuildRequires:	udisks
+#BuildRequires:	udisks
 Requires:	cdrkit
 Requires:	cdrkit-genisoimage
 Requires:	dvd+rw-tools
