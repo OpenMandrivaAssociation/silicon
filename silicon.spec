@@ -7,7 +7,7 @@
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	7.%{snap}.3
+Release:	7.%{snap}.4
 License:	GPLv3+
 Group:		Archiving/Cd burning
 Url:		https://github.com/realbardia/silicon
@@ -17,13 +17,14 @@ Source1:        Silicon-lang-ru.ts.tar.gz
 Source2:        CMakeLists.txt.tar.gz
 Source100:	silicon.rpmlintrc
 Patch1:		silicon-2.0.0-qtlocalpeer.patch
+Patch2:		silicon-2.0.0-build.patch
 BuildRequires:	cmake
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
 BuildRequires:  qt5-linguist
 BuildRequires:  qt5-linguist-tools
 BuildRequires:	pkgconfig(Qt5Test)
-BuildRequires:	pkgconfig(phonon)
+BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(taglib)
 # Extra BR needed for plugins check
 BuildRequires:	cdrkit
@@ -503,8 +504,7 @@ Detect Devices using UDisks.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{name}-%{version}-%{snap}
-%apply_patches
+%autosetup -p1 -n %{name}-%{version}-%{snap}
 
 #pushd src/Silicon/locale
 #tar -xvzf %{SOURCE1}

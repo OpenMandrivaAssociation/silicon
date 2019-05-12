@@ -1,0 +1,12 @@
+diff -up silicon-2.0.0-20150413/Libs/SiliconLib/scatwidget.cpp.omv~ silicon-2.0.0-20150413/Libs/SiliconLib/scatwidget.cpp
+--- silicon-2.0.0-20150413/Libs/SiliconLib/scatwidget.cpp.omv~	2019-05-12 03:23:54.071826382 +0200
++++ silicon-2.0.0-20150413/Libs/SiliconLib/scatwidget.cpp	2019-05-12 03:24:07.800688792 +0200
+@@ -87,7 +87,7 @@ void SpecListWidget::paintEvent( QPaintE
+ {
+     QListWidget::paintEvent( event );
+ 
+-    if( this->currentItem() <= 0 )
++    if( this->currentItem() == nullptr )
+     {
+         toolbar->hide();
+         return ;
