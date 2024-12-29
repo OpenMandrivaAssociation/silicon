@@ -7,7 +7,7 @@
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	7.%{snap}.4
+Release:	
 License:	GPLv3+
 Group:		Archiving/Cd burning
 Url:		https://github.com/realbardia/silicon
