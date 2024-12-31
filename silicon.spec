@@ -7,7 +7,7 @@
 Summary:	Disc burning and managing application
 Name:		silicon
 Version:	2.0.0
-Release:	
+Release:	7.%{snap}.5
 License:	GPLv3+
 Group:		Archiving/Cd burning
 Url:		https://github.com/realbardia/silicon
@@ -18,6 +18,7 @@ Source2:        CMakeLists.txt.tar.gz
 Source100:	silicon.rpmlintrc
 Patch1:		silicon-2.0.0-qtlocalpeer.patch
 Patch2:		silicon-2.0.0-build.patch
+Patch3:		silicon-2.0.0-qt-5.15.patch
 BuildRequires:	cmake
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel

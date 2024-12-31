@@ -1,0 +1,22 @@
+diff -up silicon-2.0.0-20150413/Libs/SiliconLib/sgraphictimer.cpp.omv~ silicon-2.0.0-20150413/Libs/SiliconLib/sgraphictimer.cpp
+--- silicon-2.0.0-20150413/Libs/SiliconLib/sgraphictimer.cpp.omv~	2024-12-31 18:47:14.481237282 +0100
++++ silicon-2.0.0-20150413/Libs/SiliconLib/sgraphictimer.cpp	2024-12-31 18:47:22.625311616 +0100
+@@ -5,6 +5,7 @@
+ 
+ #include <QRect>
+ #include <QPainter>
++#include <QPainterPath>
+ #include <QTimer>
+ #include <QPointF>
+ #include <QFont>
+diff -up silicon-2.0.0-20150413/SPlugins/SingleInnerDialog/dialogwidget.cpp.omv~ silicon-2.0.0-20150413/SPlugins/SingleInnerDialog/dialogwidget.cpp
+--- silicon-2.0.0-20150413/SPlugins/SingleInnerDialog/dialogwidget.cpp.omv~	2024-12-31 19:33:20.893189294 +0100
++++ silicon-2.0.0-20150413/SPlugins/SingleInnerDialog/dialogwidget.cpp	2024-12-31 19:33:27.231850263 +0100
+@@ -4,6 +4,7 @@
+ #include "dialogwidget.h"
+ 
+ #include <QPainter>
++#include <QPainterPath>
+ #include <QRect>
+ #include <QHBoxLayout>
+ #include <QLinearGradient>
